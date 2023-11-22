@@ -31,6 +31,7 @@ export function WeekList() {
 }
 
 const StyledView = styled.View`
+  // TODO: 마진... 맨 처음과 끝 어떻게 구현할지 생각
   margin: 0 7.5px;
 `;
 
