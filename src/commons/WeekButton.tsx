@@ -23,7 +23,7 @@ const Button = styled.Pressable<{$selected: boolean}>`
   justify-content: center;
   width: 50px;
   height: 62px;
-  // Notice: 피그마에서 radius 값이 보이지 않아 임의 지정
+  /* Notice: 피그마에서 radius 값이 보이지 않아 임의 지정 */
   border-radius: 100px;
   background-color: ${({$selected, theme}) =>
     $selected ? theme.colors.skyblue : theme.colors.gray500};
