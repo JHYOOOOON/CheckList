@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {RecoilRoot} from 'recoil';
-import {ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components/native';
 import * as Theme from './src/theme';
 import {Checklist} from './src/pages';
 
