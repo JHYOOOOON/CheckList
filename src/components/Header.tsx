@@ -12,7 +12,7 @@ export function Header() {
     if (isEditMode) {
       setIsEditMode(false);
     }
-  }, [selectedWeek, isEditMode, setIsEditMode]);
+  }, [selectedWeek]);
 
   const startEditMode = () => setIsEditMode(true);
 
