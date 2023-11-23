@@ -7,7 +7,8 @@ interface IProgress {
 }
 
 export function Progress({total, done}: IProgress) {
-  const percentage = Math.round((done / total) * 100 * 100) / 100;
+  const percentage =
+    total === 0 ? 0 : Math.round((done / total) * 100 * 100) / 100;
 
   return (
     <ProgressSection>
