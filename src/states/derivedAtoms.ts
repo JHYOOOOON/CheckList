@@ -41,3 +41,16 @@ export const todoListFamily = atomFamily((week: number) =>
     },
   ),
 );
+
+export const deleteTodoListFamily = atomFamily((week: number) =>
+  atom(null, (get, set, content: string) => {
+    const prevTodoList = [...get(todoListAtom)];
+    const targetIndex = prevTodoList.findIndex(
+      item => item.content === content && item.weekNumber === week,
+    );
+    set(todoListAtom, [
+      ...prevTodoList.slice(0, targetIndex),
+      ...prevTodoList.slice(targetIndex + 1),
+    ]);
+  }),
+);

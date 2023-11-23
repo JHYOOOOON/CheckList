@@ -1,3 +1,3 @@
 export * from './Progress';
-export * from './CheckboxItem';
+export * from './CheckListItem';
 export * from './WeekButton';

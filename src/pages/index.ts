@@ -1,2 +1,2 @@
 export * from './Checklist';
-export * from './WeekList';
+export * from '../components/WeekList';

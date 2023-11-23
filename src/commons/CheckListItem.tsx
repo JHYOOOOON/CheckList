@@ -1,25 +1,41 @@
 import React from 'react';
 import styled, {css} from 'styled-components/native';
 import * as Theme from '../theme';
+import MinusIcon from '../assets/icons/minus.svg';
 import CheckIcon from '../assets/icons/check.svg';
 
 type CheckboxItemType = {
   value: string;
   checked: boolean;
+  isEditMode: boolean;
   onPress: () => void;
+  onDelete: () => void;
 };
 
-export function CheckboxItem({checked, onPress, value}: CheckboxItemType) {
+export function CheckboxItem({
+  checked,
+  onPress,
+  value,
+  onDelete,
+  isEditMode = false,
+}: CheckboxItemType) {
   return (
-    <Wrapper onPress={onPress} data-content={value}>
-      <Checkbox $isChecked={checked}>
-        <CheckIcon
-          width={16}
-          height={16}
-          color={checked ? Theme.colors.white : Theme.colors.gray200}
-        />
-      </Checkbox>
+    <Wrapper disabled={isEditMode} onPress={onPress} data-content={value}>
+      {isEditMode === false && (
+        <Checkbox $isChecked={checked}>
+          <CheckIcon
+            width={16}
+            height={16}
+            color={checked ? Theme.colors.white : Theme.colors.gray200}
+          />
+        </Checkbox>
+      )}
       <Value $isChecked={checked}>{value}</Value>
+      {isEditMode && (
+        <DeleteButton onPress={onDelete}>
+          <MinusIcon width={18} height={18} color={Theme.colors.white} />
+        </DeleteButton>
+      )}
     </Wrapper>
   );
 }
@@ -41,6 +57,16 @@ const Checkbox = styled.View<{$isChecked: boolean}>`
   border-radius: 12px;
   background-color: ${({$isChecked, theme}) =>
     $isChecked ? theme.colors.skyblue : theme.colors.gray400};
+`;
+
+const DeleteButton = styled.Pressable`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  background-color: ${({theme}) => theme.colors.red};
 `;
 
 const Value = styled.Text<{$isChecked: boolean}>`
