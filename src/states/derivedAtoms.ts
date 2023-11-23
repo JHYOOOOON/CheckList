@@ -27,9 +27,7 @@ export const todoListFamily = atomFamily((week: number) =>
     },
     (get, set, data: Omit<TodoType, 'weekNumber'>) => {
       const prevTodoList = [...get(todoListAtom)];
-      const targetIndex = prevTodoList.findIndex(
-        item => item.content === data.content && item.weekNumber === week,
-      );
+      const targetIndex = prevTodoList.findIndex(item => item.id === data.id);
       const isExist = targetIndex !== -1;
 
       if (isExist) {
@@ -43,11 +41,15 @@ export const todoListFamily = atomFamily((week: number) =>
 );
 
 export const deleteTodoListFamily = atomFamily((week: number) =>
-  atom(null, (get, set, content: string) => {
+  atom(null, (get, set, id: string) => {
     const prevTodoList = [...get(todoListAtom)];
     const targetIndex = prevTodoList.findIndex(
-      item => item.content === content && item.weekNumber === week,
+      item => item.id === id && week === item.weekNumber,
     );
+
+    if (targetIndex === -1) {
+      return;
+    }
     set(todoListAtom, [
       ...prevTodoList.slice(0, targetIndex),
       ...prevTodoList.slice(targetIndex + 1),
