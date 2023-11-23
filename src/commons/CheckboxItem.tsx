@@ -11,7 +11,7 @@ type CheckboxItemType = {
 
 export function CheckboxItem({checked, onPress, value}: CheckboxItemType) {
   return (
-    <Wrapper onPress={onPress}>
+    <Wrapper onPress={onPress} data-content={value}>
       <Checkbox $isChecked={checked}>
         <CheckIcon
           width={16}
@@ -25,6 +25,7 @@ export function CheckboxItem({checked, onPress, value}: CheckboxItemType) {
 }
 
 const Wrapper = styled.Pressable`
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -43,6 +44,7 @@ const Checkbox = styled.View<{$isChecked: boolean}>`
 `;
 
 const Value = styled.Text<{$isChecked: boolean}>`
+  flex: 1;
   font-size: 14px;
   line-height: 21px;
   ${({theme, $isChecked}) => {

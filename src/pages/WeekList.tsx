@@ -3,7 +3,6 @@ import React from 'react';
 import {withSelectedWeek} from '../states';
 import {WeekButton} from '../commons';
 import styled from 'styled-components/native';
-import {View} from 'react-native';
 
 const MAX_WEEK = 40;
 
@@ -32,7 +31,6 @@ export function WeekList() {
 
 const StyledView = styled.View`
   /* TODO: 마진... 맨 처음과 끝 어떻게 구현할지 생각 */
-  margin: 0 7.5px;
 `;
 
 const StyledWeekList = styled.ScrollView`
