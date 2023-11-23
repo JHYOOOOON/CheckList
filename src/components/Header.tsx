@@ -1,11 +1,18 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import {useAtom} from 'jotai';
+import React, {useEffect} from 'react';
 import {Text} from 'react-native';
-import {withIsEditMode} from '../states';
+import styled from 'styled-components/native';
+import {useAtom, useAtomValue} from 'jotai';
+import {withIsEditMode, withSelectedWeek} from '../states';
 
 export function Header() {
   const [isEditMode, setIsEditMode] = useAtom(withIsEditMode);
+  const selectedWeek = useAtomValue(withSelectedWeek);
+
+  useEffect(() => {
+    if (isEditMode) {
+      setIsEditMode(false);
+    }
+  }, [selectedWeek, isEditMode, setIsEditMode]);
 
   const startEditMode = () => setIsEditMode(true);
 
