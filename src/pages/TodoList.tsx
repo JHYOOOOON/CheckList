@@ -9,11 +9,10 @@ export function TodoList() {
   const selectedWeek = useAtomValue(withSelectedWeek);
   const [todoList, setTodoList] = useAtom(todoListFamily(selectedWeek));
 
-  const onPress = (content: string) => {
-    const targetIndex = todoList.findIndex(item => item.content === content);
+  const onPress = (index: number) => {
     setTodoList({
-      content: todoList[targetIndex].content,
-      isDone: !todoList[targetIndex].isDone,
+      content: todoList[index].content,
+      isDone: !todoList[index].isDone,
     });
   };
 
@@ -29,7 +28,7 @@ export function TodoList() {
             key={`${todo.content}_${index}`}
             value={todo.content}
             checked={todo.isDone}
-            onPress={() => onPress(todo.content)}
+            onPress={() => onPress(index)}
           />
         ))}
       </TodoListWrapper>
