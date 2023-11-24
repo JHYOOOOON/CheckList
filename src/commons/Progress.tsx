@@ -1,5 +1,7 @@
 import React from 'react';
+import Animated, {useAnimatedStyle, withTiming} from 'react-native-reanimated';
 import styled from 'styled-components/native';
+import * as Theme from '../theme';
 
 interface IProgress {
   total: number;
@@ -10,6 +12,16 @@ export function Progress({total, done}: IProgress) {
   const percentage =
     total === 0 ? 0 : Math.round((done / total) * 100 * 100) / 100;
 
+  const animatedStyle = useAnimatedStyle(() => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: withTiming(`${percentage}%`, {duration: 1000}),
+    height: '100%',
+    backgroundColor: Theme.colors.skyblue,
+    borderRadius: 10,
+  }));
+
   return (
     <ProgressSection>
       <Content>
@@ -19,7 +31,7 @@ export function Progress({total, done}: IProgress) {
         <Percent>{percentage}%</Percent>
       </Content>
       <ProgressBarWrapper>
-        <ProgressBar $percentage={percentage} />
+        <Animated.View style={animatedStyle} />
       </ProgressBarWrapper>
     </ProgressSection>
   );
@@ -55,16 +67,4 @@ const ProgressBarWrapper = styled.View`
   height: 6px;
   background-color: ${({theme}) => theme.colors.gray500};
   border-radius: 10px;
-`;
-
-const ProgressBar = styled.View<{$percentage: number}>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  width: ${({$percentage}) => $percentage}%;
-  height: 100%;
-  background-color: ${({theme}) => theme.colors.skyblue};
-  border-radius: 10px;
-  transition: 0.2s width;
 `;
