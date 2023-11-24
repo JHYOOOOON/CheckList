@@ -35,5 +35,4 @@ const StyledWeekList = styled.ScrollView`
   height: 78px;
   flex-grow: 0;
   padding-bottom: 16px;
-  background-color: blue;
 `;

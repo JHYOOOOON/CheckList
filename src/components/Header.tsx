@@ -41,7 +41,6 @@ const StyledHeader = styled.View`
   position: relative;
   width: 100%;
   height: 60px;
-  background-color: red;
 `;
 
 const ChangeModeButton = styled.Pressable`

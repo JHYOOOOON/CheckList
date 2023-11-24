@@ -34,7 +34,6 @@ export function Checklist(): JSX.Element {
 
 const Wrapper = styled.View`
   position: relative;
-  background-color: burlywood;
   width: 100%;
   height: 100%;
 `;
