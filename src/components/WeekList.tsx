@@ -1,5 +1,6 @@
 import {useAtom} from 'jotai';
 import React from 'react';
+import {View} from 'react-native';
 import {withSelectedWeek} from '../states';
 import {WeekButton} from '../commons';
 import styled from 'styled-components/native';
@@ -17,24 +18,22 @@ export function WeekList() {
       {Array(MAX_WEEK)
         .fill(null)
         .map((_, index) => (
-          <StyledView key={index + 1}>
+          <View key={index + 1}>
             <WeekButton
               onPress={() => onPressWeek(index + 1)}
               selected={selectedWeek === index + 1}
               week={index + 1}
             />
-          </StyledView>
+          </View>
         ))}
     </StyledWeekList>
   );
 }
 
-const StyledView = styled.View`
-  /* TODO: 마진... 맨 처음과 끝 어떻게 구현할지 생각 */
-`;
-
 const StyledWeekList = styled.ScrollView`
   width: 100%;
   height: 78px;
+  flex-grow: 0;
   padding-bottom: 16px;
+  background-color: blue;
 `;

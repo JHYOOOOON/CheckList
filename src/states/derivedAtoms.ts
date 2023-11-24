@@ -1,8 +1,13 @@
 import {atom} from 'jotai';
 import {atomFamily} from 'jotai/utils';
 
-import {isEditModeAtom, selectedWeekAtom, todoListAtom} from './atoms';
-import {TodoListType, TodoType} from './types';
+import {
+  isEditModeAtom,
+  selectedWeekAtom,
+  toastAtom,
+  todoListAtom,
+} from './atoms';
+import {ToastType, TodoListType, TodoType} from './types';
 
 export const withIsEditMode = atom(
   get => get(isEditModeAtom),
@@ -56,3 +61,25 @@ export const deleteTodoListFamily = atomFamily((week: number) =>
     ]);
   }),
 );
+
+export const withToast = atom(
+  get => get(toastAtom),
+  (get, set, data: ToastType) => set(toastAtom, data),
+);
+
+export const withUndoTodoList = atom(null, (get, set, data: ToastType) => {
+  const prevTodoList = [...get(todoListAtom)];
+  if (data === null) {
+    return;
+  }
+  set(todoListAtom, [
+    ...prevTodoList.slice(0, data?.index),
+    {
+      weekNumber: data.weekNumber,
+      content: data.content,
+      id: data.id,
+      isDone: data.isDone,
+    },
+    ...prevTodoList.slice(data?.index),
+  ]);
+});

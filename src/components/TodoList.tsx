@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import {CheckboxItem, Progress} from '../commons';
 import {useAtom, useAtomValue, useSetAtom} from 'jotai';
 import {
@@ -7,11 +6,13 @@ import {
   todoListFamily,
   withIsEditMode,
   withSelectedWeek,
+  withToast,
 } from '../states';
 import styled from 'styled-components/native';
 import NoteImage from '../assets/images/note.svg';
 
 export function TodoList() {
+  const setToast = useSetAtom(withToast);
   const selectedWeek = useAtomValue(withSelectedWeek);
   const [todoList, setTodoList] = useAtom(todoListFamily(selectedWeek));
   const hasTodoList = todoList.length > 0;
@@ -28,7 +29,12 @@ export function TodoList() {
   };
 
   const onDelete = (id: string) => {
+    const targetIndex = todoList.findIndex(todo => todo.id === id);
     deleteTodoList(id);
+    setToast({
+      index: targetIndex,
+      ...todoList[targetIndex],
+    });
   };
 
   return (
@@ -54,7 +60,7 @@ export function TodoList() {
         </StyledView>
       ) : (
         <EmptyWrapper>
-          <NoteImage />
+          <NoteImage width={165} height={140} />
           <TextWrapper>
             <Title>No Checklists</Title>
             <Description>
@@ -68,6 +74,7 @@ export function TodoList() {
 }
 
 const StyledView = styled.View`
+  flex: 1;
   padding: 28px 20px 0 20px;
   border-top-width: 1px;
   border-color: ${({theme}) => theme.colors.gray500};
@@ -80,6 +87,7 @@ const TodoListWrapper = styled.View`
 `;
 
 const EmptyWrapper = styled.View`
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

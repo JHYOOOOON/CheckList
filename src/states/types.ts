@@ -11,3 +11,9 @@ export type TodoType = DataItemType & {
 };
 
 export type TodoListType = TodoType[];
+
+type ToastContentType = TodoType & {
+  index: number;
+};
+
+export type ToastType = ToastContentType | null;
