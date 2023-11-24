@@ -8,8 +8,6 @@ import {ToastType} from '../states/types';
 import Animated, {FadeInUp} from 'react-native-reanimated';
 import {StyleSheet, Platform} from 'react-native';
 
-/* exiting 애니메이션 버그 */
-
 const TIMER = 3000;
 
 interface IToast {
@@ -21,11 +19,17 @@ export function Toast({toast}: IToast) {
   const undoToast = useSetAtom(withUndoTodoList);
 
   useEffect(() => {
+    let timerId: NodeJS.Timeout | null = null;
     if (toast) {
-      setTimeout(() => {
+      timerId = setTimeout(() => {
         setToast(null);
       }, TIMER);
     }
+
+    return () => {
+      timerId && clearTimeout(timerId);
+      timerId = null;
+    };
   }, [toast]);
 
   const undo = () => {
