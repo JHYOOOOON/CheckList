@@ -5,7 +5,7 @@ import {useSetAtom} from 'jotai';
 import {withToast, withUndoTodoList} from '../states';
 import * as Theme from '../theme';
 import {ToastType} from '../states/types';
-import Animated, {FadeInUp} from 'react-native-reanimated';
+import Animated, {FadeInUp, FadeOutDown} from 'react-native-reanimated';
 import {StyleSheet, Platform} from 'react-native';
 
 const TIMER = 3000;
@@ -40,7 +40,7 @@ export function Toast({toast}: IToast) {
   return (
     <Animated.View
       entering={FadeInUp}
-      exiting={FadeInUp}
+      exiting={FadeOutDown}
       style={styles.wrapper}>
       <Content>Checklist deleted</Content>
       <UndoWrapper onPress={undo}>
