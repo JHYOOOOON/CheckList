@@ -3,7 +3,7 @@ import {atom} from 'jotai';
 import {ToastType, TodoListType} from './types';
 
 const INITIAL_MODE = false;
-const DEFAULT_WEEK = 15;
+export const DEFAULT_WEEK = 15;
 const INITIAL_LIST: TodoListType = [];
 
 export const isEditModeAtom = atom<boolean>(INITIAL_MODE);
