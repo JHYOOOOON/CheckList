@@ -40,7 +40,7 @@ export const todoListFamily = atomFamily((week: number) =>
         set(todoListAtom, prevTodoList);
         return;
       }
-      set(todoListAtom, [...prevTodoList, {weekNumber: week, ...data}]);
+      set(todoListAtom, [{weekNumber: week, ...data}, ...prevTodoList]);
     },
   ),
 );
