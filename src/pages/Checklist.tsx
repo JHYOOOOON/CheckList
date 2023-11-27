@@ -56,6 +56,7 @@ const Wrapper = styled.View`
   position: relative;
   width: 100%;
   height: ${Dimensions.get('window').height}px;
+  flex: 1;
 `;
 
 const Bottom = styled.View`
