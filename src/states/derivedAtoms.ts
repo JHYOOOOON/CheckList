@@ -68,18 +68,18 @@ export const withToast = atom(
 );
 
 export const withUndoTodoList = atom(null, (get, set, data: ToastType) => {
-  const prevTodoList = [...get(todoListAtom)];
   if (data === null) {
     return;
   }
+  const prevTodoList = [...get(todoListAtom)];
   set(todoListAtom, [
-    ...prevTodoList.slice(0, data?.index),
+    ...prevTodoList.slice(0, data.index),
     {
       weekNumber: data.weekNumber,
-      content: data.content,
-      id: data.id,
       isDone: data.isDone,
+      id: data.id,
+      content: data.content,
     },
-    ...prevTodoList.slice(data?.index),
+    ...prevTodoList.slice(data.index),
   ]);
 });

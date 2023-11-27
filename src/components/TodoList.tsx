@@ -7,6 +7,7 @@ import {
   withIsEditMode,
   withSelectedWeek,
   withToast,
+  withTodoList,
 } from '../states';
 import styled from 'styled-components/native';
 import NoteImage from '../assets/images/note.svg';
@@ -15,6 +16,7 @@ export function TodoList() {
   const setToast = useSetAtom(withToast);
   const selectedWeek = useAtomValue(withSelectedWeek);
   const [todoList, setTodoList] = useAtom(todoListFamily(selectedWeek));
+  const totalTodoList = useAtomValue(withTodoList);
   const hasTodoList = todoList.length > 0;
   const deleteTodoList = useSetAtom(deleteTodoListFamily(selectedWeek));
   const isEditMode = useAtomValue(withIsEditMode);
@@ -29,11 +31,11 @@ export function TodoList() {
   };
 
   const onDelete = (id: string) => {
-    const targetIndex = todoList.findIndex(todo => todo.id === id);
+    const targetIndex = totalTodoList.findIndex(todo => todo.id === id);
     deleteTodoList(id);
     setToast({
       index: targetIndex,
-      ...todoList[targetIndex],
+      ...totalTodoList[targetIndex],
     });
   };
 
