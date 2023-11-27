@@ -4,6 +4,7 @@ import ArrowUpIcon from '../assets/icons/arrowUp.svg';
 import {useSetAtom} from 'jotai';
 import {todoListFamily} from '../states';
 import uuid from 'react-native-uuid';
+import {InputAccessoryView} from 'react-native';
 
 interface IInput {
   selectedWeek: number;
@@ -34,25 +35,28 @@ export function Input({handleMode, selectedWeek}: IInput) {
   };
 
   return (
-    <Wrapper onPress={handleCancel}>
-      <InputWrapper>
-        <CustomInput $disabled={text === ''}>
-          <StyledText
-            placeholder="Add a checklist..."
-            value={text}
-            onChangeText={handleChange}
-            autoFocus
-          />
-          <Button onPress={handlePressButton} disabled={text === ''}>
-            <ArrowUpIcon width={18} height={18} />
-          </Button>
-        </CustomInput>
-      </InputWrapper>
+    <Wrapper>
+      <Dim onPress={handleCancel} />
+      <InputAccessoryView>
+        <StyledView>
+          <CustomInput $disabled={text === ''}>
+            <StyledText
+              placeholder="Add a checklist..."
+              value={text}
+              onChangeText={handleChange}
+              autoFocus
+            />
+            <Button onPress={handlePressButton} disabled={text === ''}>
+              <ArrowUpIcon width={18} height={18} />
+            </Button>
+          </CustomInput>
+        </StyledView>
+      </InputAccessoryView>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.Pressable`
+const Wrapper = styled.View`
   position: absolute;
   top: 0;
   left: 0;
@@ -61,11 +65,15 @@ const Wrapper = styled.Pressable`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
   justify-content: flex-end;
 `;
 
-const InputWrapper = styled.View`
+const Dim = styled.Pressable`
+  background-color: rgba(0, 0, 0, 0.4);
+  flex: 1;
+`;
+
+const StyledView = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
