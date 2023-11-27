@@ -25,18 +25,10 @@ export function WeekList() {
     setSelectedWeek(newPage + 1);
   };
 
-  const onPressWeek = (index: number) => {
-    setSelectedWeek(index);
-  };
-
   const renderItem = ({item, index}: {item: any; index: number}) => {
     return (
       <View key={index + 1}>
-        <WeekButton
-          onPress={() => onPressWeek(index + 1)}
-          selected={selectedWeek === index + 1}
-          week={index + 1}
-        />
+        <WeekButton selected={selectedWeek === index + 1} week={index + 1} />
       </View>
     );
   };

@@ -1,23 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {weekButtonWidth} from '../components';
 
 interface IWeekButton {
-  onPress: () => void;
   selected: boolean;
   week: number;
 }
 
-export function WeekButton({onPress, selected, week}: IWeekButton) {
+export function WeekButton({selected, week}: IWeekButton) {
   return (
-    <Button onPress={onPress} $selected={selected}>
+    <Button $selected={selected}>
       <Week $selected={selected}>week</Week>
       <WeekNum $selected={selected}>{week}</WeekNum>
     </Button>
   );
 }
 
-const Button = styled.Pressable<{$selected: boolean}>`
+const Button = styled.View<{$selected: boolean}>`
   display: flex;
   flex-direction: column;
   align-items: center;
