@@ -1,11 +1,11 @@
-import {useAtom} from 'jotai';
 import React from 'react';
+import {useAtom} from 'jotai';
 import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
+import styled from 'styled-components/native';
 import {DEFAULT_WEEK, withSelectedWeek} from '../states';
 import {WeekButton} from '../commons';
-import styled from 'styled-components/native';
+import {MAX_WEEK} from '../constants';
 
-const MAX_WEEK = 40;
 export const weekButtonWidth = 50;
 const buttonMargin = 15;
 const windowWidth = Dimensions.get('window').width;
@@ -19,10 +19,13 @@ export function WeekList() {
   );
 
   const onScroll = (e: any) => {
-    const newPage = Math.round(
+    const nextWeek = Math.round(
       e.nativeEvent.contentOffset.x / (weekButtonWidth + buttonMargin),
     );
-    setSelectedWeek(newPage + 1);
+    if (nextWeek < 0 || nextWeek >= MAX_WEEK) {
+      return;
+    }
+    setSelectedWeek(nextWeek + 1);
   };
 
   const renderItem = ({item, index}: {item: any; index: number}) => {
