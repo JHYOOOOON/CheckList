@@ -10,6 +10,7 @@ export const WEEK_BUTTON_WIDTH = 50;
 const BUTTON_GAP = 15;
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const CAROUSEL_PADDING = (WINDOW_WIDTH - WEEK_BUTTON_WIDTH) / 2;
+const TIMER = 500;
 
 export function WeekList() {
   const [selectedWeek, setSelectedWeek] = useAtom(withSelectedWeek);
@@ -22,7 +23,7 @@ export function WeekList() {
         offset: (WEEK_BUTTON_WIDTH + BUTTON_GAP) * (DEFAULT_WEEK - 1),
         animated: true,
       });
-    }, 500);
+    }, TIMER);
   }, []);
 
   const onScroll = (e: any) => {
