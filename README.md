@@ -1,79 +1,32 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Checklist
 
-# Getting Started
+40주 간의 체크리스트를 구현하는 프로젝트
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## 기술스택
 
-## Step 1: Start the Metro Server
+- React Native
+- Styled Components
+- Jotai
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 구현사항
 
-To start Metro, run the following command from the _root_ of your React Native project:
+1. 체크리스트 추가/삭제
+2. 주차별 체크리스트 UI
 
-```bash
-# using npm
-npm start
+## 문제 해결 과정
 
-# OR using Yarn
-yarn start
-```
+1. React Native를 처음 접해 세팅에 문제 발생
+   - 콘솔에 발생한 에러문구대로 버전 업데이트 실행
+   - 구글링 후, x-code 설치
+2. 애니메이션 구현의 어려움
+   - 웹 구현할 때와 다르게 css transition이 동작하지 않음
+   - Reanimated 라이브러리 공식 문서 정독 및 구글링으로 토스트 팝업, 진행 바 작업
+   - 주차 변경 시의 체크리스트 컴포넌트 애니메이션은 주차 별로 다른 페이지로 구성해야할 것 같아 React Navigation 라이브러리를 이용해보았으나 동일 컴포넌트를 재사용하여 스크린 구성하는 부분에서 문제 발생 / 시간이 오래 걸려 다른 기능에 중점을 두기로 함
+   - 주차 슬라이드 애니메이션의 경우, 라이브러리를 이용해보았으나 원하는 디자인 적용 불가로 직접 구현
+3. 체크리스트 추가 시 Input 컴포넌트가 키보드 위에 위치해야 하는 문제
+   - 구글링 후, InputAccessoryView로 해결
 
-## Step 2: Start your Application
+## 그 외
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+1. 주차 변경 시, 체크리스트 컴포넌트 애니메이션 미구현
+2. 피그마에 기재되어있지 않은 border-radius 임의로 적용
