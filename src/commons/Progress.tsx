@@ -41,6 +41,7 @@ const ProgressSection = styled.View`
   display: flex;
   flex-direction: column;
   gap: 17px;
+  margin-bottom: 28px;
 `;
 
 const Content = styled.View`

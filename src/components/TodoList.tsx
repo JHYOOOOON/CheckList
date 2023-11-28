@@ -82,10 +82,9 @@ const StyledView = styled.View`
   border-color: ${({theme}) => theme.colors.gray500};
 `;
 
-const TodoListWrapper = styled.View`
+const TodoListWrapper = styled.ScrollView`
   display: flex;
-  gap: 20px;
-  padding-top: 36px;
+  flex-direction: column;
 `;
 
 const EmptyWrapper = styled.View`

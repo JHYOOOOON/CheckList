@@ -46,6 +46,7 @@ const Wrapper = styled.Pressable`
   flex-direction: row;
   gap: 12px;
   align-items: flex-start;
+  padding: 10px 0;
 `;
 
 const Checkbox = styled.View<{$isChecked: boolean}>`
